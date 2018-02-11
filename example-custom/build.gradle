@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'com.akaita.android.easylauncher'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            //Debuggable, will get a default ribbon in the launcher icon
+        }
+        beta {
+            //Debuggable, will get a default ribbon in the launcher icon
+            debuggable true
+        }
+        canary {
+            //Non-debuggable, will not get any default ribbon
+            debuggable false
+        }
+        release {
+            //Non-debuggable, will not get any default ribbon
+        }
+    }
+
+    productFlavors {
+        local {}
+        qa {}
+        staging {}
+        production {}
+    }
+}
+
+easylauncher {
+    iconNames "@mipmap/ic_launcher_foreground" // Traditional launcher icon
+    foregroundIconNames "@mipmap/ic_launcher_foreground" // Foreground of adaptive launcher icon
+
+    productFlavors {
+        local {}
+        qa {
+            // Add one more filter to all `qa` variants
+            filters = redRibbonFilter()
+        }
+        staging {}
+        production {}
+    }
+
+    buildTypes {
+        beta {
+            // Add two more filters to all `beta` variants
+            filters = [
+                    customColorRibbonFilter("#0000FF"),
+                    overlayFilter(new File("example-custom/launcherOverlay/beta.png"))
+            ]
+        }
+        canary {
+            // Remove ALL filters to `canary` variants
+            enable false
+        }
+        release {}
+    }
+
+    variants {
+        productionDebug {
+            // OVERRIDE all previous filters defined for `productionDebug` variant
+            filters = orangeRibbonFilter()
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.2.21"
+}

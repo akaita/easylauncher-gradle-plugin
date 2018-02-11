@@ -1,0 +1,4 @@
+# configuration for bintray and signing
+
+bintrayUser=YOUR_USERNAME
+bintrayKey=YOUR_KEY

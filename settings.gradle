@@ -1,0 +1,3 @@
+include ':plugin'
+include ':example-simple'
+include ':example-custom'

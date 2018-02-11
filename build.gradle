@@ -1,0 +1,26 @@
+apply from: './versioning.gradle'
+apply from: './metadata.gradle'
+
+ext {
+    metadata.version = versionName
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.novoda:bintray-release:0.8.0' // https://github.com/novoda/bintray-release
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.21"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:1.2.21"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}

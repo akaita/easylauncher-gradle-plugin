@@ -1,0 +1,9 @@
+ext {
+    metadata = [
+            userOrg   : 'akaita',
+            groupId   : 'com.akaita.android',
+            website   : 'https://github.com/akaita/easylauncher',
+            repository: 'https://github.com/akaita/easylauncher.git',
+            licences  : ['Apache-2.0']
+    ]
+}

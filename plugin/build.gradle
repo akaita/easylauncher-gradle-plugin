@@ -1,0 +1,45 @@
+repositories {
+    jcenter()
+}
+
+apply plugin: 'groovy'
+
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:2.3.3'
+
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+        exclude group:'org.codehaus.groovy'
+    }
+}
+
+if (rootProject.hasProperty('versionName') && rootProject.hasProperty('bintrayUser')) {
+    jar {
+        manifest {
+            attributes(
+                    "Implementation-Version": project.file("../VERSION").text.trim(),
+            )
+        }
+    }
+
+    apply plugin: 'com.novoda.bintray-release'
+
+    publish {
+        artifactId = 'easylauncher'
+        repoName = 'android'
+        desc = 'Gradle plugin to modify Android launcher icons'
+
+        def metadata = rootProject.ext.metadata
+        userOrg = metadata.userOrg
+        groupId = metadata.groupId
+        publishVersion = metadata.version
+        website = metadata.website
+        repository = metadata.repository
+        licences = metadata.licences
+    }
+}
