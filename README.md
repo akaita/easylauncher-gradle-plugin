@@ -1,6 +1,6 @@
 # Easylauncher gradle plugin for Android
 
-This gradle plugin will add a different ribbon to each of your (debuggable) Android app variants. You can of course configure it as you will.
+This gradle plugin will add a different ribbon to each of your (debuggable) Android app variants. You can of course configure it as you will, overlay your own images, ...
 
 ![](icons/ic_launcher_debug.png) ![](icons/ic_launcher_beta.png)
 
