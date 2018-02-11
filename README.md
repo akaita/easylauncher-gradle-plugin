@@ -2,8 +2,7 @@
 
 This gradle plugin will add a different ribbon to each of your (debuggable) Android app variants. You can of course configure it as you will.
 
-![](icons/ic_launcher_debug.png) ![](ic_launcher_beta.png)
-// TODO more icons
+![](icons/ic_launcher_debug.png) ![](icons/ic_launcher_beta.png) ![](icons/ic_launcher_overlay.png)
 
 ## Usage
 
@@ -15,7 +14,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.akaita.android:easylauncher:0.5.0'
+        classpath 'com.akaita.android:easylauncher:1.0.0'
     }
 }
 ```
