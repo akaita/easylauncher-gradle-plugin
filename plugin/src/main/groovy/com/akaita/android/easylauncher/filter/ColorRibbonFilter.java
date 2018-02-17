@@ -46,7 +46,7 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         if (debug) {
             FontMetrics fm = g.getFontMetrics();
             Rectangle2D bounds = g.getFont().getStringBounds(str,
-                    new FontRenderContext(g.getTransform(), true, true));
+                                                             new FontRenderContext(g.getTransform(), true, true));
 
             g.drawRect(x, y - fm.getAscent(), (int) bounds.getWidth(), fm.getAscent());
         }
@@ -81,14 +81,14 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         if (label != null) {
             // draw the label
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON);
+                               RenderingHints.VALUE_ANTIALIAS_ON);
             g.setColor(labelColor);
 
             FontMetrics fm = g.getFontMetrics();
 
             drawString(g, label,
-                    (int) -labelBounds.getWidth() / 2,
-                    y + fm.getAscent());
+                       (int) -labelBounds.getWidth() / 2,
+                       y + fm.getAscent());
         }
         g.dispose();
     }
