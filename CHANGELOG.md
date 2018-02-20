@@ -1,5 +1,12 @@
 # Changelog for easylauncher plugin
 
+## v1.1.0 2018/02/20
+* Allow custom ribbon text
+* Add `defaultFlavorNaming` option to use flavor name instead of type for default ribbons
+
+## v1.0.0 2018/02/11
+* First public release
+
 ## v0.5.0 2018/01/12
 
 * Simplify DSL
