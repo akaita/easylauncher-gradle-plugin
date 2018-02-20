@@ -110,6 +110,18 @@ easylauncher {
 
 
 
+## Available options
+
+ - `iconNames`: list of icons to modify (already includes "manifest application[android:icon]")
+ - `foregroundIconNames`: list of adaptive icons to modify
+ - `defaultFlavorNaming`: use _flavor_ name in default ribbons, instead of using _buildType_
+ - `enable`: enable/disable **all** filters for a flavor/type/variant
+ - `productFlavors`: define filters for flavors (will be **added** to filters defined for types)
+ - `buildTypes`: define filters for types (will be **added** to filter defined for flavors)
+ - `variants`: define filters for variants (will **override** any other filters)
+
+
+
 ## Project Structure
 
 ```
