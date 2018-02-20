@@ -67,32 +67,60 @@ public class EasyLauncherConfig implements Serializable {
 
 
     //region Filters
-    public ColorRibbonFilter customColorRibbonFilter(String nm) {
+    public ColorRibbonFilter customColorRibbonFilter(String name, String nm) {
         return new ColorRibbonFilter(name, Color.decode(nm));
     }
 
-    public ColorRibbonFilter grayRibbonFilter() {
+    public ColorRibbonFilter customColorRibbonFilter(String nm) {
+        return new ColorRibbonFilter(this.name, Color.decode(nm));
+    }
+
+    public ColorRibbonFilter grayRibbonFilter(String name) {
         return new ColorRibbonFilter(name, new Color(0x60, 0x60, 0x60, 0x99));
     }
 
-    public ColorRibbonFilter greenRibbonFilter() {
+    public ColorRibbonFilter grayRibbonFilter() {
+        return new ColorRibbonFilter(this.name, new Color(0x60, 0x60, 0x60, 0x99));
+    }
+
+    public ColorRibbonFilter greenRibbonFilter(String name) {
         return new ColorRibbonFilter(name, new Color(0, 0x72, 0, 0x99));
     }
 
-    public ColorRibbonFilter orangeRibbonFilter() {
+    public ColorRibbonFilter greenRibbonFilter() {
+        return new ColorRibbonFilter(this.name, new Color(0, 0x72, 0, 0x99));
+    }
+
+    public ColorRibbonFilter orangeRibbonFilter(String name) {
         return new ColorRibbonFilter(name, new Color(0xff, 0x76, 0, 0x99));
     }
 
-    public ColorRibbonFilter yellowRibbonFilter() {
+    public ColorRibbonFilter orangeRibbonFilter() {
+        return new ColorRibbonFilter(this.name, new Color(0xff, 0x76, 0, 0x99));
+    }
+
+    public ColorRibbonFilter yellowRibbonFilter(String name) {
         return new ColorRibbonFilter(name, new Color(0xff, 251, 0, 0x99));
     }
 
-    public ColorRibbonFilter redRibbonFilter() {
+    public ColorRibbonFilter yellowRibbonFilter() {
+        return new ColorRibbonFilter(this.name, new Color(0xff, 251, 0, 0x99));
+    }
+
+    public ColorRibbonFilter redRibbonFilter(String name) {
         return new ColorRibbonFilter(name, new Color(0xff, 0, 0, 0x99));
     }
 
-    public ColorRibbonFilter blueRibbonFilter() {
+    public ColorRibbonFilter redRibbonFilter() {
+        return new ColorRibbonFilter(this.name, new Color(0xff, 0, 0, 0x99));
+    }
+
+    public ColorRibbonFilter blueRibbonFilter(String name) {
         return new ColorRibbonFilter(name, new Color(0, 0, 255, 0x99));
+    }
+
+    public ColorRibbonFilter blueRibbonFilter() {
+        return new ColorRibbonFilter(this.name, new Color(0, 0, 255, 0x99));
     }
 
     public OverlayFilter overlayFilter(File fgFile) {

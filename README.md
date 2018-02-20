@@ -87,7 +87,7 @@ easylauncher {
     variants {
         productionDebug {
             // OVERRIDE all previous filters defined for `productionDebug` variant
-            filters = orangeRibbonFilter()
+            filters = orangeRibbonFilter("alpha-testing")
         }
     }
 }
