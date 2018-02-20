@@ -11,6 +11,7 @@ class EasyLauncherExtension {
 
     Set<String> iconNames = new HashSet<>();
     Set<String> foregroundIconNames = new HashSet<>();
+    boolean defaultFlavorNaming = false;
 
     public EasyLauncherExtension() {
     }
@@ -79,4 +80,24 @@ class EasyLauncherExtension {
         foregroundIconNames.add(resName);
     }
 
+    /**
+     * True to use flavor name for default ribbons, false to use type name
+     */
+    public boolean isDefaultFlavorNaming() {
+        return defaultFlavorNaming;
+    }
+
+    /**
+     * @param defaultFlavorNaming true to use flavor name for default ribbons, false to use type name
+     */
+    public void setDefaultFlavorNaming(boolean defaultFlavorNaming) {
+        this.defaultFlavorNaming = defaultFlavorNaming;
+    }
+
+    /**
+     * @param defaultFlavorNaming true to use flavor name for default ribbons, false to use type name
+     */
+    public void defaultFlavorNaming(boolean defaultFlavorNaming) {
+        this.defaultFlavorNaming = defaultFlavorNaming;
+    }
 }

@@ -93,7 +93,8 @@ public class EasyLauncherPlugin implements Plugin<Project> {
 
                     //set default ribbon
                     if (filters.empty && variant.buildType.debuggable) {
-                        filters.add(new EasyLauncherConfig(variant.buildType.name).greenRibbonFilter())
+                        def ribbonText = extension.defaultFlavorNaming ? variant.flavorName : variant.buildType.name
+                        filters.add(new EasyLauncherConfig(ribbonText).greenRibbonFilter())
                     }
 
                     def generatedResDir = getGeneratedResDir(project, variant)

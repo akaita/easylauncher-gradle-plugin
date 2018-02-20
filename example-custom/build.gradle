@@ -48,6 +48,8 @@ easylauncher {
     iconNames "@mipmap/ic_launcher_foreground" // Traditional launcher icon
     foregroundIconNames "@mipmap/ic_launcher_foreground" // Foreground of adaptive launcher icon
 
+    defaultFlavorNaming = true // Use flavor name for default ribbon, instead of the type name
+
     productFlavors {
         local {}
         qa {
