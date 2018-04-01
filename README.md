@@ -14,7 +14,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.akaita.android:easylauncher:1.1.0'
+        classpath 'com.akaita.android:easylauncher:1.2.0'
     }
 }
 ```
@@ -106,6 +106,8 @@ easylauncher {
 | `blueRibbonFilter()` | ![](icons/blueRibbon.png) |
 | `grayscaleFilter()` | ![](icons/grayscale.png) |
 | `customColorRibbonFilter("#6600CC")` | ![](icons/customColorRibbon.png) |
+| `customColorRibbonFilter("debug", "#DCDCDC")` | ![](icons/customColorRibbon2.png) |
+| `customColorRibbonFilter("debug", "#DCDCDC", "#000000")` | ![](icons/customColorRibbon3.png) |
 | `overlayFilter(new File("example-custom/launcherOverlay/beta.png"))` | ![](icons/overlay.png) |
 
 
