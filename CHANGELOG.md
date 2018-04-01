@@ -1,5 +1,8 @@
 # Changelog for easylauncher plugin
 
+## v1.2.0 2018/03/27
+* Allow custom ribbon text color
+
 ## v1.1.0 2018/02/20
 * Allow custom ribbon text
 * Add `defaultFlavorNaming` option to use flavor name instead of type for default ribbons
