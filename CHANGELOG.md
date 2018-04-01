@@ -1,7 +1,7 @@
 # Changelog for easylauncher plugin
 
-## v1.2.0 2018/03/27
-* Allow custom ribbon text color
+## v1.2.0 2018/04/01
+* Allow custom ribbon text color (@mypplication)
 
 ## v1.1.0 2018/02/20
 * Allow custom ribbon text
