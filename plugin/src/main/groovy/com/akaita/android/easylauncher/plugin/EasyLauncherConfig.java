@@ -67,10 +67,14 @@ public class EasyLauncherConfig implements Serializable {
 
 
     //region Filters
-	public ColorRibbonFilter customColorRibbonFilter(String name, String ribbonColor, String labelColor) {
-        return new ColorRibbonFilter(name, Color.decode(ribbonColor), Color.decode(labelColor));
+    public ColorRibbonFilter customColorRibbonFilter(String name, String ribbonColor, String labelColor, int fontSize) {
+        return new ColorRibbonFilter(name, Color.decode(ribbonColor), Color.decode(labelColor), fontSize);
     }
-	
+    
+    public ColorRibbonFilter customColorRibbonFilter(String name, String ribbonColor, String labelColor) {
+        return new ColorRibbonFilter(name, Color.decode(ribbonColor), Color.decode(labelColor), 0);
+    }
+    
     public ColorRibbonFilter customColorRibbonFilter(String name, String ribbonColor) {
         return new ColorRibbonFilter(name, Color.decode(ribbonColor));
     }
