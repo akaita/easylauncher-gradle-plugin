@@ -25,18 +25,24 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     int fontStyle = Font.PLAIN;
 
     int fontSize = 0;
+    int fontSizeLarge = 0;
 
     boolean largeRibbon = false;
 
-    public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, int fontSize) {
+    public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, int fontSize, int fontSizeLarge) {
         this.label = label;
         this.ribbonColor = ribbonColor;
         this.labelColor = labelColor;
         this.fontSize = fontSize;
+        this.fontSizeLarge = fontSizeLarge;
+    }
+
+    public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, int fontSize) {
+        this(label, ribbonColor, Color.WHITE, fontSize, 0);
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor) {
-        this(label, ribbonColor, Color.WHITE, 0);
+        this(label, ribbonColor, Color.WHITE, 0, 0);
     }
 
     private static int calculateMaxLabelWidth(int y) {
@@ -97,8 +103,9 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     }
 
     private Font getFont(int maxLabelWidth, FontRenderContext frc) {
-        if (fontSize > 0) {
-            return new Font(fontName, fontStyle, fontSize);
+        final int size = (largeRibbon && fontSizeLarge > 0) ? fontSizeLarge : (!largeRibbon && fontSize > 0) ? fontSize : 0;
+        if (size > 0) {
+            return new Font(fontName, fontStyle, size);
         }
         int max = largeRibbon ? 64 : 32;
         if (label == null) {
