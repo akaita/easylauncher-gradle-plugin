@@ -109,6 +109,7 @@ easylauncher {
 | `customColorRibbonFilter("label", "#DCDCDC")` | ![](icons/customColorRibbon2.png) |
 | `customColorRibbonFilter("label", "#DCDCDC", "#000000")` | ![](icons/customColorRibbon3.png) |
 | `customColorRibbonFilter("label", "#DCDCDC", "#000000", 16)` | ![](icons/customColorRibbon3.png) |
+| `customColorRibbonFilter("label", "#DCDCDC", "#000000", 16, 32)` | ![](icons/customColorRibbon3.png) |
 | `overlayFilter(new File("example-custom/launcherOverlay/beta.png"))` | ![](icons/overlay.png) |
 
 
