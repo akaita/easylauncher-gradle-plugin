@@ -26,7 +26,7 @@ class EasyLauncherTask extends DefaultTask {
     List<EasyLauncherFilter> filters = []
 
     @TaskAction
-    public void run() {
+    void run() {
         if (filters.empty) {
             return
         }

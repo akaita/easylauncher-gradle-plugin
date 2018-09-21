@@ -3,7 +3,7 @@ package com.akaita.android.easylauncher.plugin
 import com.akaita.android.easylauncher.plugin.Resources
 import spock.lang.Specification
 
-public class ResourcesTest extends Specification {
+class ResourcesTest extends Specification {
     def "resourceFilePattern"() {
         expect:
         Resources.resourceFilePattern(resName) == pattern
