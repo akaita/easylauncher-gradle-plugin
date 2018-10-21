@@ -66,9 +66,7 @@ easylauncher {
         }
         staging {
             filters = [
-                    customColorRibbonFilter("debug", "#556600CC", "#FFFFFF", "BottomHorizontal")
-//                    customColorRibbonFilter("debug", "#6600CC", "#FFFFFF", "TopHorizontal")
-//                    customColorRibbonFilter("debug", "#6600CC", "#FFFFFF")
+                    customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "bottom")
             ]
         }
         production {}

@@ -1,7 +1,5 @@
 package com.akaita.android.easylauncher.filter;
 
-import com.akaita.android.easylauncher.utils.LoggerHelper;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -11,7 +9,6 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.logging.Logger;
 
 
 public class ColorRibbonFilter implements EasyLauncherFilter {
@@ -45,11 +42,6 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         this.ribbonColor = ribbonColor;
         this.labelColor = labelColor;
         this.position = position;
-
-        // only setup logger if in debug mode
-        if (debug) {
-            logger = LoggerHelper.getLogger();
-        }
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor) {
@@ -83,25 +75,6 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
     @Override
     public void apply(BufferedImage image) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-
-
-//        logger.info("width: " + width);
-//        logger.info("height: " + height);
-        /*
-            NOTE: different sizes:
-
-            108 x 108
-            162 x 162
-            432 x 432
-            324 x 324
-            216 x 216
-            48 x 48
-            72 x 72
-            192 x 192
-            144 x 144
-         */
 
         Graphics2D g = (Graphics2D) image.getGraphics();
 
@@ -181,8 +154,6 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     }
 
     private Font getFont(int iconHeight, int maxLabelWidth, FontRenderContext frc) {
-//        int max = largeRibbon ? 64 : 32;
-//        int max = largeRibbon ? 45 : 32;
         int max = iconHeight / 8;
         if (label == null) {
             return new Font(fontName, fontStyle, max / 2);
