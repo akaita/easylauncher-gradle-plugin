@@ -13,7 +13,7 @@ import org.gradle.api.Task
 // see http://www.gradle.org/docs/current/userguide/custom_plugins.html
 
 @CompileStatic
-public class EasyLauncherPlugin implements Plugin<Project> {
+class EasyLauncherPlugin implements Plugin<Project> {
 
     static {
         System.setProperty("java.awt.headless", "true")
@@ -117,7 +117,7 @@ public class EasyLauncherPlugin implements Plugin<Project> {
                 }
             }
 
-            project.task(EasyLauncherTask.NAME, dependsOn: tasks);
+            project.task(EasyLauncherTask.NAME, dependsOn: tasks)
         }
     }
 

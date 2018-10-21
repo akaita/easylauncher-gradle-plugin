@@ -56,7 +56,13 @@ easylauncher {
             // Add one more filter to all `qa` variants
             filters = redRibbonFilter()
         }
-        staging {}
+        staging {
+            filters = [
+                    customColorRibbonFilter("debug", "#556600CC", "#FFFFFF", "BottomHorizontal")
+//                    customColorRibbonFilter("debug", "#6600CC", "#FFFFFF", "TopHorizontal")
+//                    customColorRibbonFilter("debug", "#6600CC", "#FFFFFF")
+            ]
+        }
         production {}
     }
 
@@ -84,6 +90,6 @@ easylauncher {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:1.2.21"
+    compile 'com.android.support:appcompat-v7:27.1.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.2.61"
 }

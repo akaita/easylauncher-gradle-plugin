@@ -109,7 +109,11 @@ easylauncher {
 | `customColorRibbonFilter("label", "#DCDCDC")` | ![](icons/customColorRibbon2.png) |
 | `customColorRibbonFilter("label", "#DCDCDC", "#000000")` | ![](icons/customColorRibbon3.png) |
 | `overlayFilter(new File("example-custom/launcherOverlay/beta.png"))` | ![](icons/overlay.png) |
-
+| Custom Positioning | |
+| Options: `Default`, `BottomHorizontal`, `TopHorizontal`
+| `customColorRibbonFilter("#6600CC")` | ![](icons/customColorRibbon.png) |
+| `customColorRibbonFilter("label", "#DCDCDC", "#000000", "BottomHorizontal")` | ![](icons/customColorRibbonBottom.png) |
+| `customColorRibbonFilter("label", "#DCDCDC", "#000000", "TopHorizontal")` | ![](icons/customColorRibbonTop.png) |
 
 
 ## Available options
