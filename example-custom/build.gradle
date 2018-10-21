@@ -21,17 +21,25 @@ android {
 
     buildTypes {
         debug {
+            signingConfig signingConfigs.debug
+
             //Debuggable, will get a default ribbon in the launcher icon
         }
         beta {
+            signingConfig signingConfigs.debug
+
             //Debuggable, will get a default ribbon in the launcher icon
             debuggable true
         }
         canary {
+            signingConfig signingConfigs.debug
+
             //Non-debuggable, will not get any default ribbon
             debuggable false
         }
         release {
+            signingConfig signingConfigs.debug
+
             //Non-debuggable, will not get any default ribbon
         }
     }
