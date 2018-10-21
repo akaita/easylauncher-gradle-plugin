@@ -151,29 +151,28 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
     private Font getFont(int iconHeight, int maxLabelWidth, FontRenderContext frc) {
         int max = iconHeight / 8;
+        int min = 0;
         if (label == null) {
             return new Font(fontName, fontStyle, max / 2);
         }
-        int min = 0;
-        int x = max;
 
+        int size = max;
         for (int i = 0; i < 10; i++) {
-            int m = ((max + min) / 2);
-            if (m == x) {
+            int mid = ((max + min) / 2);
+            if (mid == size) {
                 break;
             }
 
-            Font font = new Font(fontName, fontStyle, m);
+            Font font = new Font(fontName, fontStyle, mid);
             Rectangle2D labelBounds = font.getStringBounds(label, frc);
-            int px = (int) labelBounds.getWidth();
-
-            if (px > maxLabelWidth) {
-                max = m;
+            if ((int) labelBounds.getWidth() > maxLabelWidth) {
+                max = mid;
             } else {
-                min = m;
+                min = mid;
             }
-            x = m;
+
+            size = mid;
         }
-        return new Font(fontName, fontStyle, x);
+        return new Font(fontName, fontStyle, size);
     }
 }
