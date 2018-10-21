@@ -13,28 +13,26 @@ import java.awt.image.BufferedImage;
 
 public class ColorRibbonFilter implements EasyLauncherFilter {
 
-    static final boolean debug = Boolean.parseBoolean(System.getenv("EASYLAUNCHER_DEBUG"));
+    private static final boolean debug = Boolean.parseBoolean(System.getenv("EASYLAUNCHER_DEBUG"));
 
-    private Logger logger;
+    private final Color ribbonColor;
 
-    final Color ribbonColor;
+    private final Color labelColor;
 
-    final Color labelColor;
+    private final LayoutPosition position;
 
-    final LayoutPosition position;
+    private String label;
 
-    String label;
+    private String fontName = "DEFAULT";
 
-    String fontName = "Default";
+    private int fontStyle = Font.PLAIN;
 
-    int fontStyle = Font.PLAIN;
-
-    boolean largeRibbon = false;
+    private boolean largeRibbon = false;
 
     public enum LayoutPosition {
-        TopHorizontal,
-        BottomHorizontal,
-        Default
+        TOP,
+        BOTTOM,
+        DEFAULT
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, LayoutPosition position) {
@@ -45,11 +43,11 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor) {
-        this(label, ribbonColor, labelColor, LayoutPosition.Default);
+        this(label, ribbonColor, labelColor, LayoutPosition.DEFAULT);
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor) {
-        this(label, ribbonColor, Color.WHITE, LayoutPosition.Default);
+        this(label, ribbonColor, Color.WHITE, LayoutPosition.DEFAULT);
     }
 
     private static int calculateMaxLabelWidth(int y) {
@@ -75,59 +73,57 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
     @Override
     public void apply(BufferedImage image) {
+        int imageWidth = image.getWidth();
+        int imageHeight = image.getHeight();
 
         Graphics2D g = (Graphics2D) image.getGraphics();
 
-        int transformAmount = 0;
-
+        // transform
+        int degrees;
         switch (position) {
-            case TopHorizontal:
-            case BottomHorizontal:
-                transformAmount = 0;
+            case TOP:
+            case BOTTOM:
+                degrees = 0;
                 break;
-            case Default:
-                transformAmount = -45;
+            case DEFAULT:
+            default:
+                degrees = -45;
                 break;
         }
-
-        // transform
-        g.setTransform(AffineTransform.getRotateInstance(Math.toRadians(transformAmount)));
-
-        int y = height / 2;
-        int x = 0;
+        g.setTransform(AffineTransform.getRotateInstance(Math.toRadians(degrees)));
 
         FontRenderContext frc = new FontRenderContext(g.getTransform(), true, true);
         // calculate the rectangle where the label is rendered
-        int maxLabelWidth = calculateMaxLabelWidth(y);
-        g.setFont(getFont(height, maxLabelWidth, frc));
+        int maxLabelWidth = calculateMaxLabelWidth(imageHeight/2);
+        g.setFont(getFont(imageHeight, maxLabelWidth, frc));
 
-        Rectangle2D labelBounds = g.getFont().getStringBounds(label == null ? "" : label, frc);
-        int labelHeight = (int) labelBounds.getHeight();
-
-        int padding = largeRibbon ? (labelHeight / 8) : (labelHeight / 10);
+        Rectangle2D textBounds = g.getFont().getStringBounds(label == null ? "" : label, frc);
+        int textHeight = (int) textBounds.getHeight();
+        int textPadding = textHeight / 10;
+        int labelHeight = textHeight + textPadding*2;
 
         // update y position after calculating font size
+        int y;
         switch (position) {
-            case TopHorizontal:
-                y = labelHeight;
+            case TOP:
+                y = largeRibbon ? imageHeight/4 : 0;
                 break;
-            case BottomHorizontal:
-                int bannerHeight = labelHeight + (padding * 2);
-                y = height - bannerHeight - labelHeight;
+            case BOTTOM:
+                y = imageHeight - labelHeight - (largeRibbon ? imageHeight/4 : 0);
                 break;
-            case Default:
-                y = height / (largeRibbon ? 2 : 4);
+            case DEFAULT:
+            default:
+                y = imageHeight / (largeRibbon ? 2 : 4);
                 break;
         }
-
 
         // draw the ribbon
         g.setColor(ribbonColor);
 
-        if (position == LayoutPosition.TopHorizontal || position == LayoutPosition.BottomHorizontal) {
-            g.fillRect(0, y, width, (labelHeight + (padding * 2)));
+        if (position == LayoutPosition.TOP || position == LayoutPosition.BOTTOM) {
+            g.fillRect(0, y, imageWidth, labelHeight);
         } else {
-            g.fillRect(-width, y, width * 2, labelHeight);
+            g.fillRect(-imageWidth, y, imageWidth * 2, labelHeight);
         }
 
 
@@ -139,13 +135,13 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
             FontMetrics fm = g.getFontMetrics();
 
-            if (position == LayoutPosition.TopHorizontal || position == LayoutPosition.BottomHorizontal) {
+            if (position == LayoutPosition.TOP || position == LayoutPosition.BOTTOM) {
                 drawString(g, label,
-                        (width / 2) - ((int) labelBounds.getWidth() / 2),
-                        y + fm.getAscent() + padding);
+                        (imageWidth / 2) - ((int) textBounds.getWidth() / 2),
+                        y + fm.getAscent() + textPadding);
             } else {
                 drawString(g, label,
-                        (int) -labelBounds.getWidth() / 2,
+                        (int) -textBounds.getWidth() / 2,
                         y + fm.getAscent());
             }
 
