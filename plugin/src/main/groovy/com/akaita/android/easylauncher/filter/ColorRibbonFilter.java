@@ -138,7 +138,7 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
             if (position == LayoutPosition.TOP || position == LayoutPosition.BOTTOM) {
                 drawString(g, label,
                         (imageWidth / 2) - ((int) textBounds.getWidth() / 2),
-                        y + fm.getAscent() + textPadding);
+                        y + fm.getAscent());
             } else {
                 drawString(g, label,
                         (int) -textBounds.getWidth() / 2,
