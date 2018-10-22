@@ -1,5 +1,8 @@
 # Changelog for easylauncher plugin
 
+## v1.3.1 2018/10/22
+* Fix custom ribbon gravity configuration (it was being ignored in some cases :( )
+
 ## v1.3.0 2018/10/22
 * Allow custom ribbon gravity (top, bottom, topRight, topLeft) (thanks for your help @ka05)
 * Allow custom ribbon text size (relative to the icon size) (thanks for your help @arminelec)
