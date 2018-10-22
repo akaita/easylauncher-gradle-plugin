@@ -2,7 +2,7 @@
 
 Modify the launcher icon of each of your app-variants using simple gradle rules. Add ribbons of any color, overlay your own images, change the colors of the icon, ...
 
-![](icons/ic_launcher_debug.png) ![](icons/ic_launcher_staging.png) ![](icons/ic_launcher_variant.png) ![](icons/ic_launcher_beta.png) ![](icons/ic_launcher_grayscale.png) ![](icons/customColorRibbonTopRight.png ![](icons/customColorRibbonTop.png ![](icons/customColorRibbonBottom.png
+![](icons/ic_launcher_debug.png) ![](icons/ic_launcher_staging.png) ![](icons/ic_launcher_variant.png) ![](icons/ic_launcher_beta.png) ![](icons/ic_launcher_grayscale.png) ![](icons/customColorRibbonTopRight.png) ![](icons/customColorRibbonTop.png) ![](icons/customColorRibbonBottom.png)
 
 ## Usage
 
@@ -106,7 +106,7 @@ easylauncher {
 
 | Command | Result |
 | - | - |
-| Overlay | `overlayFilter(new File("example-custom/launcherOverlay/beta.png"))` | ![](icons/overlay.png) |
+| `overlayFilter(new File("example-custom/launcherOverlay/beta.png"))` | ![](icons/overlay.png) |
 
 ## Ribbon filters
 
