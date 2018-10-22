@@ -2,7 +2,7 @@
 
 Modify the launcher icon of each of your app-variants using simple gradle rules. Add ribbons of any color, overlay your own images, change the colors of the icon, ...
 
-![](icons/ic_launcher_debug.png) ![](icons/ic_launcher_staging.png) ![](icons/ic_launcher_variant.png) ![](icons/ic_launcher_beta.png) ![](icons/ic_launcher_grayscale.png)
+![](icons/ic_launcher_debug.png) ![](icons/ic_launcher_staging.png) ![](icons/ic_launcher_variant.png) ![](icons/ic_launcher_beta.png) ![](icons/ic_launcher_grayscale.png) ![](icons/customColorRibbonTopRight.png ![](icons/customColorRibbonTop.png ![](icons/customColorRibbonBottom.png
 
 ## Usage
 
@@ -96,19 +96,42 @@ easylauncher {
 
 ## Available filters
 
-| Filter | Result |
+## Grayscale filter
+
+| Command | Result |
 | - | - |
-| `grayRibbonFilter()` | ![](icons/grayRibbon.png) |
-| `greenRibbonFilter()` | ![](icons/greenRibbon.png) |
-| `yellowRibbonFilter()` | ![](icons/yellowRibbon.png) |
-| `orangeRibbonFilter()` | ![](icons/orangeRibbon.png) |
-| `redRibbonFilter()` | ![](icons/redRibbon.png) |
-| `blueRibbonFilter()` | ![](icons/blueRibbon.png) |
 | `grayscaleFilter()` | ![](icons/grayscale.png) |
-| `customColorRibbonFilter("#6600CC")` | ![](icons/customColorRibbon.png) |
-| `customColorRibbonFilter("label", "#DCDCDC")` | ![](icons/customColorRibbon2.png) |
-| `customColorRibbonFilter("label", "#DCDCDC", "#000000")` | ![](icons/customColorRibbon3.png) |
-| `overlayFilter(new File("example-custom/launcherOverlay/beta.png"))` | ![](icons/overlay.png) |
+
+
+## Overlay filter
+
+| Command | Result |
+| - | - |
+| Overlay | `overlayFilter(new File("example-custom/launcherOverlay/beta.png"))` | ![](icons/overlay.png) |
+
+## Ribbon filters
+
+| Filter | Command | Result |
+| - | - | - |
+| Gray ribbon | `grayRibbonFilter()` | ![](icons/grayRibbon.png) |
+| Green ribbon | `greenRibbonFilter()` | ![](icons/greenRibbon.png) |
+| Yellow ribbon | `yellowRibbonFilter()` | ![](icons/yellowRibbon.png) |
+| Orange ribbon | `orangeRibbonFilter()` | ![](icons/orangeRibbon.png) |
+| Red ribbon | `redRibbonFilter()` | ![](icons/redRibbon.png) |
+| Blue ribbon | `blueRibbonFilter()` | ![](icons/blueRibbon.png) |
+
+## Advanced Ribbon filter
+
+| Description | Command | Result |
+| - | - | - |
+| Custom background color  | `customColorRibbonFilter("#6600CC")` | ![](icons/customColorRibbon.png) |
+| Custom label | `customColorRibbonFilter("label", "#DCDCDC")` | ![](icons/customColorRibbon2.png) |
+| Custom text color | `customColorRibbonFilter("label", "#DCDCDC", "#000000")` | ![](icons/customColorRibbon3.png) |
+| Custom gravity - Top | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "top")` | ![](icons/customColorRibbonTop.png) |
+| Custom gravity - Bottom | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "bottom"))` | ![](icons/customColorRibbonBottom.png) |
+| Custom gravity - TopLeft | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "topLeft"))` | ![](icons/customColorRibbonTopLeft.png) |
+| Custom gravity - TopRight | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "topRight"))` | ![](icons/customColorRibbonTopRight.png) |
+| Custom text size (relative to the icon size) | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "bottom", 0.2))` | ![](icons/customColorRibbonBottomSize.png) |
 
 
 ## Available options
