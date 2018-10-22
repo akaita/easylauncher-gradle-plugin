@@ -13,8 +13,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.akaita.android:easylauncher:1.2.0'
+        classpath 'com.akaita.android:easylauncher:1.3.0'
     }
 }
 ```
