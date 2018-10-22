@@ -19,7 +19,7 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
     private final Color labelColor;
 
-    private final LayoutPosition position;
+    private final Gravity gravity;
 
     private String label;
 
@@ -29,26 +29,33 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
     private boolean largeRibbon = false;
 
-    public enum LayoutPosition {
+    public enum Gravity {
         TOP,
         BOTTOM,
         TOPLEFT,
         TOPRIGHT
     }
 
-    public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, LayoutPosition position) {
+    public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, Gravity gravity, float textSizeRatio) {
         this.label = label;
         this.ribbonColor = ribbonColor;
         this.labelColor = labelColor;
-        this.position = position;
+        this.gravity = gravity;
+    }
+
+    public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, Gravity gravity) {
+        this.label = label;
+        this.ribbonColor = ribbonColor;
+        this.labelColor = labelColor;
+        this.gravity = gravity;
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor) {
-        this(label, ribbonColor, labelColor, LayoutPosition.TOPLEFT);
+        this(label, ribbonColor, labelColor, Gravity.TOPLEFT);
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor) {
-        this(label, ribbonColor, Color.WHITE, LayoutPosition.TOPLEFT);
+        this(label, ribbonColor, Color.WHITE, Gravity.TOPLEFT);
     }
 
     private static int calculateMaxLabelWidth(int y) {
@@ -68,7 +75,7 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         Graphics2D g = (Graphics2D) image.getGraphics();
 
         // transform
-        switch (position) {
+        switch (gravity) {
             case TOP:
             case BOTTOM:
                 break;
@@ -91,9 +98,9 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         int textPadding = textHeight / 10;
         int labelHeight = textHeight + textPadding*2;
 
-        // update y position after calculating font size
+        // update y gravity after calculating font size
         int y;
-        switch (position) {
+        switch (gravity) {
             case TOP:
                 y = largeRibbon ? imageHeight/4 : 0;
                 break;
@@ -110,9 +117,9 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         // draw the ribbon
         g.setColor(ribbonColor);
 
-        if (position == LayoutPosition.TOP || position == LayoutPosition.BOTTOM) {
+        if (gravity == Gravity.TOP || gravity == Gravity.BOTTOM) {
             g.fillRect(0, y, imageWidth, labelHeight);
-        } else if (position == LayoutPosition.TOPRIGHT) {
+        } else if (gravity == Gravity.TOPRIGHT) {
             g.fillRect(0, y, imageWidth * 2, labelHeight);
         } else {
             g.fillRect(-imageWidth, y, imageWidth * 2, labelHeight);
@@ -126,11 +133,11 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
             FontMetrics fm = g.getFontMetrics();
 
-            if (position == LayoutPosition.TOP || position == LayoutPosition.BOTTOM) {
+            if (gravity == Gravity.TOP || gravity == Gravity.BOTTOM) {
                 g.drawString(label,
                         (imageWidth / 2) - ((int) textBounds.getWidth() / 2),
                         y + fm.getAscent());
-            } else if (position == LayoutPosition.TOPRIGHT) {
+            } else if (gravity == Gravity.TOPRIGHT) {
                 g.drawString(label,
                         imageWidth - ((int) textBounds.getWidth() / 2),
                         y + fm.getAscent());
@@ -144,8 +151,8 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         g.dispose();
     }
 
-    private Font getFont(int iconHeight, int maxLabelWidth, FontRenderContext frc) {
-        int max = iconHeight / 8;
+    private Font getFont(int imageHeight, int maxLabelWidth, FontRenderContext frc) {
+        int max = imageHeight / 8;
         int min = 0;
         if (label == null) {
             return new Font(fontName, fontStyle, max / 2);
