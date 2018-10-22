@@ -32,7 +32,8 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     public enum LayoutPosition {
         TOP,
         BOTTOM,
-        DEFAULT
+        TOPLEFT,
+        TOPRIGHT
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, LayoutPosition position) {
@@ -43,27 +44,15 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor) {
-        this(label, ribbonColor, labelColor, LayoutPosition.DEFAULT);
+        this(label, ribbonColor, labelColor, LayoutPosition.TOPLEFT);
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor) {
-        this(label, ribbonColor, Color.WHITE, LayoutPosition.DEFAULT);
+        this(label, ribbonColor, Color.WHITE, LayoutPosition.TOPLEFT);
     }
 
     private static int calculateMaxLabelWidth(int y) {
         return (int) Math.sqrt(Math.pow(y, 2) * 2);
-    }
-
-    private static void drawString(Graphics2D g, String str, int x, int y) {
-        g.drawString(str, x, y);
-
-        if (debug) {
-            FontMetrics fm = g.getFontMetrics();
-            Rectangle2D bounds = g.getFont().getStringBounds(str,
-                    new FontRenderContext(g.getTransform(), true, true));
-
-            g.drawRect(x, y - fm.getAscent(), (int) bounds.getWidth(), fm.getAscent());
-        }
     }
 
     @Override
@@ -79,18 +68,18 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         Graphics2D g = (Graphics2D) image.getGraphics();
 
         // transform
-        int degrees;
         switch (position) {
             case TOP:
             case BOTTOM:
-                degrees = 0;
                 break;
-            case DEFAULT:
+            case TOPRIGHT:
+                g.setTransform(AffineTransform.getRotateInstance(Math.toRadians(45), imageWidth, 0));
+                break;
+            case TOPLEFT:
             default:
-                degrees = -45;
+                g.setTransform(AffineTransform.getRotateInstance(Math.toRadians(-45)));
                 break;
         }
-        g.setTransform(AffineTransform.getRotateInstance(Math.toRadians(degrees)));
 
         FontRenderContext frc = new FontRenderContext(g.getTransform(), true, true);
         // calculate the rectangle where the label is rendered
@@ -111,7 +100,8 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
             case BOTTOM:
                 y = imageHeight - labelHeight - (largeRibbon ? imageHeight/4 : 0);
                 break;
-            case DEFAULT:
+            case TOPRIGHT:
+            case TOPLEFT:
             default:
                 y = imageHeight / (largeRibbon ? 2 : 4);
                 break;
@@ -122,6 +112,8 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
         if (position == LayoutPosition.TOP || position == LayoutPosition.BOTTOM) {
             g.fillRect(0, y, imageWidth, labelHeight);
+        } else if (position == LayoutPosition.TOPRIGHT) {
+            g.fillRect(0, y, imageWidth * 2, labelHeight);
         } else {
             g.fillRect(-imageWidth, y, imageWidth * 2, labelHeight);
         }
@@ -129,18 +121,21 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
         if (label != null) {
             // draw the label
-            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g.setColor(labelColor);
 
             FontMetrics fm = g.getFontMetrics();
 
             if (position == LayoutPosition.TOP || position == LayoutPosition.BOTTOM) {
-                drawString(g, label,
+                g.drawString(label,
                         (imageWidth / 2) - ((int) textBounds.getWidth() / 2),
                         y + fm.getAscent());
+            } else if (position == LayoutPosition.TOPRIGHT) {
+                g.drawString(label,
+                        imageWidth - ((int) textBounds.getWidth() / 2),
+                        y + fm.getAscent());
             } else {
-                drawString(g, label,
+                g.drawString(label,
                         (int) -textBounds.getWidth() / 2,
                         y + fm.getAscent());
             }
