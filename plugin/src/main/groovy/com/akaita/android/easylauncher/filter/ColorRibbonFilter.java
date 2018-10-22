@@ -43,7 +43,7 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, Gravity gravity) {
-        this(label, ribbonColor, labelColor, Gravity.TOPLEFT, -1);
+        this(label, ribbonColor, labelColor, gravity, -1);
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor) {
