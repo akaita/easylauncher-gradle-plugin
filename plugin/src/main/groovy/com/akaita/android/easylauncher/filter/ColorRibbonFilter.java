@@ -15,13 +15,11 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
 
     private static final boolean debug = Boolean.parseBoolean(System.getenv("EASYLAUNCHER_DEBUG"));
 
+    private final String label;
     private final Color ribbonColor;
-
     private final Color labelColor;
-
     private final Gravity gravity;
-
-    private String label;
+    private final float textSizeRatio;
 
     private String fontName = "DEFAULT";
 
@@ -41,13 +39,11 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
         this.ribbonColor = ribbonColor;
         this.labelColor = labelColor;
         this.gravity = gravity;
+        this.textSizeRatio = textSizeRatio;
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor, Gravity gravity) {
-        this.label = label;
-        this.ribbonColor = ribbonColor;
-        this.labelColor = labelColor;
-        this.gravity = gravity;
+        this(label, ribbonColor, labelColor, Gravity.TOPLEFT, -1);
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor, Color labelColor) {
@@ -55,7 +51,7 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     }
 
     public ColorRibbonFilter(String label, Color ribbonColor) {
-        this(label, ribbonColor, Color.WHITE, Gravity.TOPLEFT);
+        this(label, ribbonColor, Color.WHITE);
     }
 
     private static int calculateMaxLabelWidth(int y) {
@@ -152,12 +148,20 @@ public class ColorRibbonFilter implements EasyLauncherFilter {
     }
 
     private Font getFont(int imageHeight, int maxLabelWidth, FontRenderContext frc) {
+        // User-defined text size
+        if (textSizeRatio != -1) {
+            return new Font(fontName, fontStyle, (int) (imageHeight * textSizeRatio));
+        }
+
         int max = imageHeight / 8;
         int min = 0;
+
+        // Label not set
         if (label == null) {
             return new Font(fontName, fontStyle, max / 2);
         }
 
+        // Automatic calculation: as big as possible
         int size = max;
         for (int i = 0; i < 10; i++) {
             int mid = ((max + min) / 2);
