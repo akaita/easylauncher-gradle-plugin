@@ -37,6 +37,8 @@ easylauncher {
 }
 ```
 
+Warning: please not that `easylauncher` doesn't yet support vector drawables. Please feel free to contribute a PR solving the issue https://github.com/akaita/easylauncher-gradle-plugin/issues/9
+
 
 ### Advanced usage
 
