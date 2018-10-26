@@ -8,6 +8,8 @@ Modify the launcher icon of each of your app-variants using simple gradle rules.
 
 ## Usage
 
+### Basic usage
+
 ```groovy
 // in build.gradle
 buildscript {
@@ -23,7 +25,27 @@ buildscript {
 ```groovy
 // in app/build.gradle
 apply plugin: 'com.akaita.android.easylauncher'
-    
+```
+
+### Adaptive launcher icons (Android 8.0+)
+
+Additionally to the set up from `Basic usage`, you need to tell the plugin what the name of the foreground layer is:
+```groovy
+// in app/build.gradle
+easylauncher {
+    foregroundIconNames "@mipmap/ic_launcher_foreground" // Foreground of adaptive launcher icon
+}
+```
+
+
+### Advanced usage
+
+You can customize the filters applied to each type, flavor and variant of your app.  
+
+Imagin these are the type and flavors of your app:
+
+```groovy
+// in app/build.gradle
 android {
     buildTypes {
         debug {
@@ -51,7 +73,9 @@ android {
 ```
 
 
-Optionally, customize the plugin's behaviour
+You could customize the plugin's behaviour like this: 
+
+
 ```groovy
 easylauncher {
     // "manifest application[android:icon]" is automatically added to the list
