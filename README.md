@@ -155,10 +155,10 @@ easylauncher {
 | Custom label | `customColorRibbonFilter("label", "#DCDCDC")` | ![](icons/customColorRibbon2.png) |
 | Custom text color | `customColorRibbonFilter("label", "#DCDCDC", "#000000")` | ![](icons/customColorRibbon3.png) |
 | Custom gravity - Top | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "top")` | ![](icons/customColorRibbonTop.png) |
-| Custom gravity - Bottom | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "bottom"))` | ![](icons/customColorRibbonBottom.png) |
-| Custom gravity - TopLeft | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "topLeft"))` | ![](icons/customColorRibbonTopLeft.png) |
-| Custom gravity - TopRight | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "topRight"))` | ![](icons/customColorRibbonTopRight.png) |
-| Custom text size (relative to the icon size) | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "bottom", 0.2))` | ![](icons/customColorRibbonBottomSize.png) |
+| Custom gravity - Bottom | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "bottom")` | ![](icons/customColorRibbonBottom.png) |
+| Custom gravity - TopLeft | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "topLeft")` | ![](icons/customColorRibbonTopLeft.png) |
+| Custom gravity - TopRight | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "topRight")` | ![](icons/customColorRibbonTopRight.png) |
+| Custom text size (relative to the icon size) | `customColorRibbonFilter("custom", "#556600CC", "#FFFFFF", "bottom", 0.2)` | ![](icons/customColorRibbonBottomSize.png) |
 
 
 ## Available options
