@@ -1,6 +1,7 @@
 package com.akaita.android.easylauncher.plugin;
 
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +23,11 @@ public class EasyLauncher {
         this.inputFile = inputFile;
         this.outputFile = outputFile;
 
-        image = ImageIO.read(inputFile);
+        BufferedImage readImage = ImageIO.read(inputFile);
+        image = new BufferedImage(readImage.getWidth(), readImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+        g2d.drawImage(readImage, 0, 0, null);
+        g2d.dispose();
     }
 
     public void save() throws IOException {
