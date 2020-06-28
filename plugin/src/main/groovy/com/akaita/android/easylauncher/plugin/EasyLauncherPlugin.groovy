@@ -102,7 +102,7 @@ class EasyLauncherPlugin implements Plugin<Project> {
 
                     def name = "${EasyLauncherTask.NAME}${capitalize(variant.name)}"
                     def task = project.task(name, type: EasyLauncherTask) as EasyLauncherTask
-                    task.variant = variant
+                    task.variantName = variant.name
                     task.outputDir = generatedResDir
                     task.iconNames = new HashSet<String>(extension.iconNames)
                     task.foregroundIconNames = new HashSet<String>(extension.foregroundIconNames)
