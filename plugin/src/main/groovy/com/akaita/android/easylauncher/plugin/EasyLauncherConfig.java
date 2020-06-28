@@ -24,7 +24,7 @@ public class EasyLauncherConfig implements Serializable {
 
     @Nullable
     private Boolean mEnabled = true;
-    private List<EasyLauncherFilter> mFilters = Lists.newArrayList();
+    private final List<EasyLauncherFilter> mFilters = Lists.newArrayList();
 
 
     public String name;
@@ -78,7 +78,7 @@ public class EasyLauncherConfig implements Serializable {
     public ColorRibbonFilter customColorRibbonFilter(String name, String ribbonColor, String labelColor) {
         return new ColorRibbonFilter(name, Color.decode(ribbonColor), Color.decode(labelColor));
     }
-	
+
     public ColorRibbonFilter customColorRibbonFilter(String name, String ribbonColor) {
         return new ColorRibbonFilter(name, Color.decode(ribbonColor));
     }
