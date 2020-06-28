@@ -1,6 +1,7 @@
 System.setProperty("java.awt.headless", "true")
 
 repositories {
+    google()
     jcenter()
 }
 

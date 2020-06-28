@@ -1,4 +1,5 @@
 repositories {
+    google()
     jcenter()
 }
 
@@ -9,11 +10,11 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
-    compile 'com.android.tools.build:gradle:2.3.3'
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:4.0.0'
 
-    testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+    testImplementation('org.spockframework:spock-core:1.0-groovy-2.4') {
         exclude group:'org.codehaus.groovy'
     }
 }
