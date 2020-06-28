@@ -1,8 +1,9 @@
 package com.akaita.android.easylauncher.filter;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public class GrayscaleFilter implements EasyLauncherFilter {
+public class GrayscaleFilter implements EasyLauncherFilter, Serializable {
 
     private static int toGray(int color) {
         int a = (color & 0xFF000000);

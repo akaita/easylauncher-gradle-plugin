@@ -9,9 +9,10 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 
-public class ColorRibbonFilter implements EasyLauncherFilter {
+public class ColorRibbonFilter implements EasyLauncherFilter, Serializable {
 
     private static final boolean debug = Boolean.parseBoolean(System.getenv("EASYLAUNCHER_DEBUG"));
 
