@@ -14,7 +14,7 @@ Modify the launcher icon of each of your app-variants using simple gradle rules.
 // in build.gradle
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.akaita.android:easylauncher:1.3.1'
